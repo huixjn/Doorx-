@@ -1,0 +1,6 @@
+{
+  "name": "doorx",
+  "description": "A creator marketplace where creators can upload digital products, generate AI marketing videos, and buyers can try products virtually using AI Try-On before purchasing via Razorpay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
