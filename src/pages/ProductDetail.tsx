@@ -284,18 +284,18 @@ export default function ProductDetail({ user }: ProductDetailProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-32">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
         {/* Left Column: Visuals */}
-        <div className="space-y-8 sticky top-24">
-          <div className="relative group rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200 shadow-2xl shadow-blue-brand/10">
+        <div className="space-y-12 sticky top-32">
+          <div className="relative group rounded-[2.5rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.03)]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={tryOnImage || product.imageUrl}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
                 className="aspect-[4/5]"
               >
                 <img
@@ -311,88 +311,95 @@ export default function ProductDetail({ user }: ProductDetailProps) {
               <Button 
                 variant="secondary" 
                 size="sm" 
-                className="absolute top-6 right-6 rounded-xl bg-white/80 backdrop-blur-md border border-white/50 shadow-lg text-neutral-900 font-bold hover:bg-white"
+                className="absolute top-8 right-8 rounded-xl bg-white text-midnight font-heading text-lg hover:bg-banana-green transition-colors"
                 onClick={() => setTryOnImage(null)}
               >
                 <RefreshCcw className="w-4 h-4 mr-2" />
-                Reset View
+                Reset
               </Button>
             )}
             
             {processingTryOn && (
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex flex-col items-center justify-center space-y-4">
-                <Loader2 className="w-10 h-10 text-blue-brand animate-spin" />
-                <p className="text-blue-brand font-black">AI Processing...</p>
+              <div className="absolute inset-0 bg-midnight/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-4">
+                <Loader2 className="w-12 h-12 text-banana-green animate-spin" />
+                <p className="text-banana-green font-mono text-xs uppercase tracking-widest animate-pulse">Processing Protocol...</p>
               </div>
             )}
 
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-brand flex items-center justify-center text-white">
-                    <Sparkles className="w-5 h-5 text-banana-green" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <div className="bg-midnight/80 backdrop-blur-3xl p-6 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center border border-white/10">
+                    <Sparkles className="w-6 h-6 text-banana-green animate-pulse" />
                   </div>
                   <div>
-                    <p className="text-xs text-neutral-500 font-medium">AI Feature</p>
-                    <p className="text-sm font-black text-neutral-900 uppercase">Virtual Try-On Active</p>
+                    <p className="text-[10px] text-white/40 font-mono uppercase tracking-widest">Active System</p>
+                    <p className="text-sm font-heading tracking-tight text-white uppercase italic">AI High-Fidelity Sync</p>
                   </div>
                 </div>
-                <Badge className="bg-banana-green text-black border-none font-bold">PRO AI</Badge>
+                <Badge className="bg-banana-green text-midnight border-none font-black text-[10px]">V3.2</Badge>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <Card 
-              className="rounded-2xl border-neutral-200 bg-neutral-50/50 cursor-pointer hover:bg-white hover:border-banana-green transition-all group"
+          <div className="grid grid-cols-2 gap-6">
+            <button 
+              className="relative group p-8 rounded-[2rem] bg-white/5 border border-white/10 text-left transition-all hover:border-banana-green/50 active:scale-95"
               onClick={generateAdCopy}
             >
-              <CardContent className="p-6 text-center space-y-2">
-                {generatingAd ? (
-                  <Loader2 className="w-6 h-6 text-blue-brand mx-auto animate-spin" />
-                ) : (
-                  <Play className="w-6 h-6 text-blue-brand mx-auto group-hover:scale-110 transition-transform" />
-                )}
-                <p className="text-sm font-bold">AI Video Ad</p>
-                <p className="text-xs text-neutral-500">Auto-generate content</p>
-              </CardContent>
-            </Card>
-            <Card className="rounded-2xl border-neutral-200 bg-neutral-50/50 cursor-pointer hover:bg-white hover:border-banana-green transition-all group overflow-hidden">
-              <label className="cursor-pointer w-full h-full">
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 rounded-xl bg-banana-green/10 flex items-center justify-center group-hover:bg-banana-green transition-colors duration-500">
+                  <Play className="w-6 h-6 text-banana-green group-hover:text-midnight transition-colors" />
+                </div>
+                <div>
+                  <p className="text-xl font-heading uppercase text-white">Ad Gen</p>
+                  <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Execute Marketing</p>
+                </div>
+              </div>
+            </button>
+
+            <button className="relative group p-8 rounded-[2rem] bg-white/5 border border-white/10 text-left transition-all hover:border-blue-brand/50 active:scale-95">
+              <label className="cursor-pointer w-full h-full block">
                 <input type="file" accept="image/*" className="hidden" onChange={handleTryOn} disabled={processingTryOn} />
-                <CardContent className="p-6 text-center space-y-2">
-                  <Wand2 className="w-6 h-6 text-blue-brand mx-auto group-hover:scale-110 transition-transform" />
-                  <p className="text-sm font-bold">Smart Try-On</p>
-                  <p className="text-xs text-neutral-500">Upload your photo</p>
-                </CardContent>
+                <div className="flex flex-col gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-blue-brand/10 flex items-center justify-center group-hover:bg-blue-brand transition-colors duration-500">
+                    <Wand2 className="w-6 h-6 text-blue-brand group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <p className="text-xl font-heading uppercase text-white">Try-On</p>
+                    <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Visual Simulation</p>
+                  </div>
+                </div>
               </label>
-            </Card>
+            </button>
           </div>
         </div>
 
         {/* Right Column: Details */}
-        <div className="space-y-10">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Badge variant="secondary" className="bg-blue-brand/10 text-blue-brand border-blue-brand/20 rounded-lg px-3 py-1">
-                Digital Asset
-              </Badge>
-              <div className="h-px w-8 bg-neutral-200" />
-              <span className="text-xs text-neutral-400 font-medium uppercase tracking-widest">Creator: {product.creatorEmail.split('@')[0]}</span>
+        <div className="space-y-12">
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-[10px] font-mono font-bold text-banana-green uppercase tracking-widest">
+                Class A Asset
+              </div>
+              <div className="h-px flex-1 bg-white/5" />
+              <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest italic">@{product.creatorEmail.split('@')[0]}</span>
             </div>
-            <h1 className="font-heading text-5xl sm:text-6xl font-black text-neutral-900 leading-tight">
+            <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-white leading-[0.85] tracking-tighter uppercase mb-8">
               {product.title}
             </h1>
-            <div className="flex items-baseline gap-4">
-              <span className="text-4xl font-black text-blue-brand">₹{product.price}</span>
-              <span className="text-neutral-400 line-through text-lg">₹{Math.round(product.price * 1.5)}</span>
-              <Badge className="bg-banana-green text-black border-banana-green rounded-lg">Save 33%</Badge>
+            <div className="flex items-end gap-6 pt-4">
+              <span className="text-6xl font-heading text-white">₹{product.price}</span>
+              <div className="flex flex-col pb-1">
+                 <span className="text-lg font-mono text-white/20 line-through leading-none">₹{Math.round(product.price * 1.5)}</span>
+                 <span className="text-[10px] font-mono font-black text-banana-green uppercase tracking-widest">33% Yield Loss</span>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {product.videoUrl && (
-              <div className="rounded-3xl border border-neutral-200 overflow-hidden bg-black aspect-[9/16] max-h-[400px] shadow-2xl relative group">
+              <div className="rounded-[2.5rem] border border-white/10 overflow-hidden bg-midnight aspect-[9/16] max-h-[500px] shadow-2xl relative group">
                 <video 
                   src={product.videoUrl} 
                   controls 
@@ -401,58 +408,67 @@ export default function ProductDetail({ user }: ProductDetailProps) {
                   muted
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge className="bg-blue-brand text-white border-none gap-2 px-3 py-1 font-black uppercase text-[10px]">
-                    <Video className="w-3 h-3" />
-                    AI Product Reel
+                <div className="absolute top-6 left-6 z-10">
+                  <Badge className="bg-banana-green text-midnight border-none gap-2 px-4 py-2 font-mono font-black uppercase text-[10px] rounded-xl">
+                    <Video className="w-4 h-4" />
+                    Protocol Preview
                   </Badge>
                 </div>
               </div>
             )}
 
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
+            <div className="flex flex-col gap-6">
+              <div className="flex gap-6">
                 {purchased ? (
-                  <div className="space-y-4 flex-1">
-                    <div className="bg-green-50 border border-green-100 rounded-2xl p-6 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                        <CheckCircle2 className="w-6 h-6" />
+                  <div className="space-y-6 flex-1">
+                    <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 flex items-center gap-6">
+                      <div className="w-16 h-16 rounded-2xl bg-banana-green/20 flex items-center justify-center text-banana-green">
+                        <CheckCircle2 className="w-8 h-8" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-green-900">You own this product</h3>
-                        <p className="text-sm text-green-700">Download the files below to start using them.</p>
+                        <h3 className="text-xl font-heading uppercase text-white tracking-tight">Identity Verified</h3>
+                        <p className="text-xs font-mono text-white/40 uppercase tracking-widest">Asset ownership unlocked for this terminal.</p>
                       </div>
                     </div>
-                    <a href={product.fileUrl} download target="_blank" rel="noreferrer">
-                      <Button className="w-full h-16 bg-neutral-900 hover:bg-neutral-800 text-white rounded-2xl text-lg font-black gap-3 shadow-xl shadow-neutral-200">
-                        <Download className="w-6 h-6" />
-                        Download Assets
+                    <a href={product.fileUrl} download target="_blank" rel="noreferrer" className="block w-full">
+                      <Button className="w-full h-20 bg-white hover:bg-banana-green text-midnight rounded-[1.5rem] font-heading text-2xl uppercase tracking-tight transition-all">
+                        <Download className="w-7 h-7 mr-3" />
+                        Download Data
                       </Button>
                     </a>
                   </div>
                 ) : (
                   <Button 
                     onClick={handlePayment} 
-                    className="flex-1 h-16 bg-blue-brand hover:bg-neutral-900 text-white rounded-2xl text-lg font-black gap-3 shadow-xl shadow-blue-brand/20 transition-all hover:scale-[1.02] active:scale-95"
+                    className="flex-1 h-20 bg-white hover:bg-banana-green text-midnight rounded-[1.5rem] font-heading text-2xl uppercase tracking-tight transition-all shadow-[0_0_60px_rgba(255,255,255,0.05)]"
                   >
-                    <ShoppingCart className="w-6 h-6" />
-                    Purchase Now
+                    <ShoppingCart className="w-7 h-7 mr-3" />
+                    Acquire Asset
                   </Button>
                 )}
                 <Button
                   variant="outline"
                   onClick={toggleWishlist}
-                  className={`h-16 w-16 rounded-2xl border-2 transition-all active:scale-90 ${
-                    wishlisted ? 'bg-red-50 border-red-200 text-red-500' : 'border-neutral-200 text-neutral-400 hover:border-red-200 hover:text-red-500'
+                  className={`h-20 w-20 rounded-[1.5rem] border-2 transition-all active:scale-90 ${
+                    wishlisted ? 'border-red-500 bg-red-500/10 text-red-500 ring-4 ring-red-500/20' : 'border-white/10 bg-white/5 text-white/20 hover:border-red-500 hover:text-red-500'
                   }`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className={`h-8 w-8 ${wishlisted ? 'fill-current' : 'fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
+                   <AnimatePresence mode="wait">
+                    <motion.div
+                      key={wishlisted ? 'filled' : 'outline'}
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className={`h-8 w-8 ${wishlisted ? 'fill-current' : 'fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    </motion.div>
+                  </AnimatePresence>
                 </Button>
               </div>
+              <p className="text-center font-mono text-[9px] text-white/20 uppercase tracking-[0.3em]">Encrypted Handshake Protocol Active • V3.2 Verification Ready</p>
             </div>
-            <p className="text-center text-xs text-neutral-400">Secure payment via Razorpay • Instant Download • Lifetime Access</p>
           </div>
 
           <Tabs defaultValue="ai-features" className="w-full">

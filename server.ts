@@ -43,7 +43,7 @@ const razorpay = new Razorpay({
 // Models
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  role: { type: String, enum: ['creator', 'buyer'], default: 'buyer' },
+  role: { type: String, enum: ['creator', 'buyer', 'admin'], default: 'buyer' },
   mobileNumber: { type: String },
   address: { type: String },
   displayName: { type: String },
@@ -92,13 +92,33 @@ const checkDbConnection = (req: express.Request, res: express.Response, next: ex
   next();
 };
 
+// Admin Middleware
+const isAdmin = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const adminEmail = req.headers['x-admin-email'] as string;
+  if (!adminEmail) return res.status(401).json({ error: 'Auth required' });
+  
+  try {
+    const user = await User.findOne({ email: adminEmail });
+    if (user?.role === 'admin') {
+      next();
+    } else {
+      res.status(403).json({ error: 'Admin access required' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 // API Routes
 app.post('/api/users/sync', checkDbConnection, async (req, res) => {
   const { email, displayName } = req.body;
   try {
     let user = await User.findOne({ email });
     if (!user) {
-      user = new User({ email, displayName });
+      // Automatically make suvhobouri@gmail.com an admin
+      const role = email === 'suvhobouri@gmail.com' ? 'admin' : 'buyer';
+      const isConfigured = email === 'suvhobouri@gmail.com'; // Admin is pre-configured
+      user = new User({ email, displayName, role, isConfigured });
       await user.save();
     }
     res.json(user);
@@ -278,13 +298,44 @@ app.get('/api/orders/creator/:email', checkDbConnection, async (req, res) => {
   }
 });
 
-app.post('/api/products/:id/publish-reel', checkDbConnection, async (req, res) => {
-  const { videoUrl } = req.body;
+// Admin Routes
+app.get('/api/admin/users', [checkDbConnection, isAdmin], async (req: any, res: any) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, { videoUrl }, { new: true });
-    res.json(product);
-  } catch (error: any) {
-    res.status(500).json({ error: 'Failed to publish reel' });
+    const users = await User.find().sort({ createdAt: -1 });
+    res.json(users);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/orders', [checkDbConnection, isAdmin], async (req: any, res: any) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 }).populate('productId');
+    res.json(orders);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/admin/products/:id', [checkDbConnection, isAdmin], async (req: any, res: any) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Product deleted' });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/admin/users/:id', [checkDbConnection, isAdmin], async (req: any, res: any) => {
+  try {
+    const userToDelete = await User.findById(req.params.id);
+    if (userToDelete?.email === 'suvhobouri@gmail.com') {
+      return res.status(403).json({ error: 'Cannot delete super admin' });
+    }
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'User deleted' });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
   }
 });
 

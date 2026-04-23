@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import GlobalRefreshButton from '@/components/GlobalRefreshButton';
 import Onboarding from '@/components/Onboarding';
 import Home from '@/pages/Home';
 import Upload from '@/pages/Upload';
 import ProductDetail from '@/pages/ProductDetail';
 import Dashboard from '@/pages/Dashboard';
 import Profile from '@/pages/Profile';
+import Admin from '@/pages/Admin';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { useEffect, useState } from 'react';
 import { auth } from '@/lib/firebase';
@@ -73,7 +75,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className="min-h-screen bg-neutral-50 font-sans text-neutral-900">
+        <div className="dark min-h-screen bg-midnight font-sans text-white selection:bg-banana-green selection:text-midnight">
           {user && dbUser && !dbUser.isConfigured && (
             <Onboarding user={user} onComplete={(updated) => setDbUser(updated)} />
           )}
@@ -84,10 +86,12 @@ export default function App() {
               <Route path="/upload" element={<Upload user={user} dbUser={dbUser} />} />
               <Route path="/product/:id" element={<ProductDetail user={user} />} />
               <Route path="/dashboard" element={<Dashboard user={user} dbUser={dbUser} />} />
+              <Route path="/admin" element={<Admin user={user} dbUser={dbUser} />} />
               <Route path="/profile" element={<Profile user={user} dbUser={dbUser} onUpdate={() => {/* Trigger re-sync if needed */}} />} />
             </Routes>
           </main>
           <Footer />
+          <GlobalRefreshButton />
           <Toaster position="top-center" richColors />
         </div>
       </Router>

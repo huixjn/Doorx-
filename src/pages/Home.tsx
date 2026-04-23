@@ -80,51 +80,50 @@ export default function Home() {
   return (
     <div className="space-y-12 pb-20 bg-neutral-50/50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 sm:pt-40 sm:pb-32">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/3 bg-blue-brand/5 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-0 left-0 -z-10 w-1/4 h-1/4 bg-banana-green/5 blur-[100px] rounded-full animate-bounce" />
+      <section className="relative overflow-hidden pt-32 pb-24 sm:pt-48 sm:pb-40">
+        {/* Animated Background Gradients */}
+        <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-blue-brand/20 blur-[160px] rounded-full animate-pulse" />
+        <div className="absolute bottom-10 left-0 -z-10 w-[400px] h-[400px] bg-banana-green/10 blur-[140px] rounded-full animate-bounce duration-[10s]" />
         
         <div className="max-w-7xl mx-auto px-6 relative">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-neutral-900 text-white mb-10 transform -rotate-1 shadow-2xl">
-              <Sparkles className="w-4 h-4 text-banana-green fill-banana-green animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] italic">The Next Gen Creator Economy</span>
+            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 mb-12 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-blue-brand animate-ping" />
+              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] italic">Network V3.2 Protocol Active</span>
             </div>
 
-            <h1 className="font-heading text-7xl sm:text-9xl font-black tracking-tight text-neutral-900 leading-[0.85] mb-10">
-              CREATE<br />
-              <span className="text-blue-brand relative">
-                CONNECT
-                <div className="absolute -bottom-2 left-0 w-full h-4 bg-banana-green/30 -z-10 skew-x-[-12deg]" />
-              </span><br />
+            <h1 className="font-heading text-8xl sm:text-[12rem] lg:text-[16rem] font-black tracking-tighter text-white leading-[0.75] mb-12 perspective-1000">
+              CRAFT<br />
+              <span className="text-banana-green italic -skew-x-12 inline-block">CODE</span><br />
               CONQUER
             </h1>
 
-            <p className="text-xl text-neutral-500 max-w-2xl mx-auto leading-relaxed font-medium mb-16">
-              Empowering creators with AI-driven marketing, virtual try-ons, and instant global marketplace reach.
+            <p className="text-xl sm:text-2xl text-white/50 max-w-3xl mx-auto leading-relaxed font-light mb-20 tracking-tight">
+              The high-fidelity marketplace for elite digital assets. 
+              <span className="text-white"> AI-driven provenance.</span> 
+              <span className="text-blue-brand underline underline-offset-8 decoration-2"> Instant deployment.</span>
             </p>
             
-            <div className="max-w-2xl mx-auto relative group mb-12">
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-brand via-banana-green to-blue-brand rounded-[2.5rem] blur-xl opacity-20 group-focus-within:opacity-40 transition-all duration-500 animate-gradient-x" />
-              <div className="relative flex items-center bg-white rounded-3xl border-2 border-neutral-100 shadow-2xl overflow-hidden p-2">
+            <div className="max-w-3xl mx-auto relative group mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-brand via-banana-green to-blue-brand rounded-[2rem] blur-xl opacity-20 group-focus-within:opacity-50 transition-all duration-700 animate-gradient-x" />
+              <div className="relative flex items-center bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 p-2 overflow-hidden">
                 <div className="pl-6">
-                  <PackageSearch className="w-6 h-6 text-neutral-400" />
+                  <PackageSearch className="w-6 h-6 text-white/20" />
                 </div>
                 <input
                   type="text"
-                  placeholder="What are you creating today?"
-                  className="w-full px-6 py-4 text-neutral-900 bg-transparent focus:outline-none font-bold text-lg placeholder:text-neutral-300"
+                  placeholder="Intercept data fragments..."
+                  className="w-full px-6 py-4 text-white bg-transparent focus:outline-none font-heading text-2xl placeholder:text-white/10 uppercase tracking-tight"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <Button className="bg-blue-brand hover:bg-neutral-900 text-white rounded-2xl px-12 h-14 font-black uppercase tracking-widest text-xs transition-all shadow-lg hover:shadow-blue-brand/40">
-                  Search
+                <Button className="bg-white text-midnight hover:bg-banana-green transition-colors rounded-2xl px-10 h-16 font-heading text-xl uppercase tracking-tighter">
+                  S-Execute
                 </Button>
               </div>
             </div>
@@ -134,10 +133,10 @@ export default function Home() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                  className={`px-8 py-3 rounded-2xl text-[10px] font-mono font-bold uppercase tracking-widest transition-all ${
                     selectedCategory === cat
-                      ? 'bg-neutral-900 text-white shadow-2xl scale-110 -rotate-2 ring-4 ring-banana-green/20'
-                      : 'bg-white border-2 border-neutral-100 text-neutral-400 hover:border-blue-brand hover:text-blue-brand hover:scale-105'
+                      ? 'bg-banana-green text-midnight shadow-[0_0_40px_rgba(204,255,0,0.3)] scale-110 -rotate-2'
+                      : 'bg-white/5 border border-white/10 text-white/40 hover:border-banana-green hover:text-white hover:scale-105'
                   }`}
                 >
                   {cat}
@@ -149,108 +148,97 @@ export default function Home() {
       </section>
 
       {/* Product Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-black text-neutral-900 flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-banana-green" />
-            {selectedCategory === 'All' ? 'Featured Products' : `${selectedCategory} Collection`}
-          </h2>
-          <div className="h-px flex-1 bg-neutral-200 mx-6 hidden sm:block" />
-          <span className="text-sm font-bold text-neutral-400">{filteredProducts.length} items found</span>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pb-32">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-banana-green animate-pulse" />
+              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-banana-green">Current Inventory</span>
+            </div>
+            <h2 className="text-5xl font-heading tracking-tighter uppercase leading-none">
+              {selectedCategory === 'All' ? 'The Collection' : `${selectedCategory}`}
+            </h2>
+          </div>
+          <div className="flex items-center gap-4 text-white/40 font-mono text-[10px] uppercase tracking-widest">
+            <span>Scan Complete:</span>
+            <span className="text-white">{filteredProducts.length} Items Indexed</span>
+          </div>
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <ProductSkeleton key={i} />
             ))}
           </div>
-        ) : isStarting ? (
-          <EmptyState
-            icon={Loader2}
-            title="Server is warming up"
-            description="We're spinning up the backend services. This usually takes 10-15 seconds."
-            actionLabel="Check Again"
-            onAction={fetchProducts}
-          />
-        ) : error ? (
-          <EmptyState
-            icon={RefreshCcw}
-            title="Oops!"
-            description={error}
-            actionLabel="Retry"
-            onAction={fetchProducts}
-          />
         ) : filteredProducts.length === 0 ? (
           <EmptyState
             icon={PackageSearch}
-            title="No products found"
-            description={searchQuery ? "Try searching for something else or browse categories." : "Be the first to upload a digital product and start selling today!"}
-            actionLabel={searchQuery ? "Clear Search" : "Upload Product"}
+            title="Registry Empty"
+            description={searchQuery ? "No assets match your search parameters." : "The marketplace is awaiting new terminal uploads."}
+            actionLabel={searchQuery ? "Clear Search" : "Upload Asset"}
             onAction={searchQuery ? () => setSearchQuery('') : undefined}
             actionLink={searchQuery ? undefined : "/upload"}
           />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product._id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="group overflow-hidden border-neutral-100 hover:border-blue-brand/20 transition-all duration-500 hover:shadow-[0_32px_64px_-12px_rgba(0,102,255,0.12)] rounded-[2.5rem] bg-white relative">
-                  <div className="aspect-[4/5] overflow-hidden relative m-2 rounded-[2rem]">
+                <Card className="group bg-transparent border-none shadow-none text-white p-0 relative">
+                  <div className="aspect-[3/4] overflow-hidden relative rounded-[2rem] border border-white/10 group-hover:border-banana-green/50 transition-colors duration-500">
                     <img
                       src={product.imageUrl}
                       alt={product.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <Link to={`/product/${product._id}`}>
-                        <Button className="w-full gap-2 rounded-2xl font-black uppercase tracking-widest text-[10px] bg-white text-neutral-900 hover:bg-banana-green hover:text-black border-none shadow-2xl py-6">
-                          <Eye className="w-4 h-4" />
-                          View Masterpiece
+                    <div className="absolute inset-0 bg-midnight/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center p-8">
+                      <Link to={`/product/${product._id}`} className="w-full">
+                        <Button className="w-full h-16 rounded-2xl font-heading text-xl uppercase bg-white text-midnight hover:bg-banana-green hover:text-midnight transition-all translate-y-4 group-hover:translate-y-0 duration-500">
+                          Inspect
                         </Button>
                       </Link>
                     </div>
-                    <div className="absolute top-4 left-4 flex flex-col gap-2">
-                      <div className="bg-neutral-900/60 backdrop-blur-xl text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 border border-white/10">
-                        <div className="w-1.5 h-1.5 rounded-full bg-banana-green animate-pulse" />
-                        Asset
-                      </div>
-                      {product.category && (
-                        <div className="bg-blue-brand/90 backdrop-blur-xl text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/10">
-                          {product.category}
-                        </div>
-                      )}
+                    <div className="absolute top-6 left-6 flex flex-col gap-2">
+                       <Badge className="bg-midnight/80 backdrop-blur-md text-white border-white/10 rounded-lg font-mono text-[8px] uppercase px-3 py-1 tracking-widest">
+                        {product.category}
+                      </Badge>
                     </div>
                   </div>
-                  <CardHeader className="px-6 py-4 pb-0">
-                    <div className="flex flex-col gap-1">
-                      <CardTitle className="text-xl font-black line-clamp-1 group-hover:text-blue-brand transition-colors tracking-tighter uppercase">{product.title}</CardTitle>
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center border border-neutral-200">
-                          <span className="text-[10px] font-black">{product.creatorEmail[0].toUpperCase()}</span>
-                        </div>
-                        <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-widest">@{product.creatorEmail.split('@')[0]}</p>
+
+                  <div className="mt-8 space-y-4">
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="space-y-1">
+                        <span className="text-[9px] font-mono font-bold text-white/30 uppercase tracking-[0.2em] leading-none">Platform Asset</span>
+                        <CardTitle className="text-2xl font-heading uppercase tracking-tight leading-none group-hover:text-banana-green transition-colors">{product.title}</CardTitle>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-mono font-bold text-banana-green">₹{product.price}</span>
                       </div>
                     </div>
-                  </CardHeader>
-                  <CardFooter className="px-6 py-6 pt-4">
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-black text-neutral-300 uppercase tracking-widest">Price</span>
-                        <span className="text-2xl font-black text-neutral-900 tabular-nums">₹{product.price}</span>
+                    
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center overflow-hidden">
+                          <span className="text-[8px] font-bold uppercase">{product.creatorEmail[0]}</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-white/20 uppercase tracking-widest italic truncate max-w-[120px]">
+                          @{product.creatorEmail.split('@')[0]}
+                        </span>
                       </div>
                       <Link to={`/product/${product._id}`}>
-                        <div className="w-14 h-14 rounded-2xl bg-neutral-50 flex items-center justify-center text-neutral-400 group-hover:bg-blue-brand group-hover:text-white group-hover:rotate-12 transition-all duration-500 cursor-pointer shadow-inner border border-neutral-100">
-                          <ShoppingCart className="w-6 h-6" />
+                        <div className="flex items-center gap-1.5 group/link">
+                          <span className="text-[8px] font-mono font-bold uppercase tracking-widest text-white/40 group-hover/link:text-white transition-colors">Details</span>
+                          <Eye className="w-3 h-3 text-white/20 group-hover/link:text-banana-green transition-colors" />
                         </div>
                       </Link>
                     </div>
-                  </CardFooter>
+                  </div>
                 </Card>
               </motion.div>
             ))}

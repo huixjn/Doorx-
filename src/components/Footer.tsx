@@ -5,96 +5,76 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral-950 text-white mt-32 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-16">
-          <div className="col-span-1 md:col-span-3 space-y-10">
-            <Link to="/" className="flex items-center gap-3 group w-fit">
-              <div className="w-14 h-14 bg-neutral-900 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 group-hover:rotate-6 duration-500 shadow-2xl border border-white/5">
-                <ShoppingBag className="w-7 h-7 text-banana-green" />
+    <footer className="bg-midnight text-white mt-32 border-t border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          <div className="lg:col-span-6 space-y-12">
+            <Link to="/" className="flex items-center gap-6 group w-fit">
+              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center transition-all group-hover:scale-110 group-hover:-rotate-6 duration-700 shadow-2xl">
+                <ShoppingBag className="w-10 h-10 text-midnight" />
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-4xl tracking-tighter uppercase italic">door<span className="text-blue-brand">x</span></span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 ml-0.5">Global Creative Protocol</span>
+                <span className="font-heading text-5xl tracking-tighter uppercase italic leading-none">door<span className="text-banana-green">x</span></span>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.6em] text-white/20 ml-1">Terminal Active</span>
               </div>
             </Link>
-            <p className="text-neutral-500 max-w-md text-xl font-medium leading-relaxed">
-              We're building the infrastructure for the next generation of creative entrepreneurs. 
-              Sell digital assets, leverage generative AI, and scale your brand globally.
+            <p className="text-white/40 max-w-lg text-2xl font-light leading-relaxed tracking-tight">
+              The high-fidelity protocol for <span className="text-white">creative sovereignty</span>. 
+              Engineering the next generation of digital distribution and <span className="text-banana-green">AI-driven provenance</span>.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-6">
               {[Twitter, Instagram, Github, Mail].map((Icon, i) => (
-                <a key={i} href="#" className="group relative w-14 h-14 rounded-2xl bg-neutral-900 border border-white/5 flex items-center justify-center text-neutral-500 hover:text-white transition-all overflow-hidden">
-                  <div className="absolute inset-0 bg-blue-brand opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Icon className="w-6 h-6 relative z-10 transition-transform group-hover:scale-110" />
+                <a key={i} href="#" className="group relative w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/20 hover:text-midnight transition-all overflow-hidden active:scale-90">
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Icon className="w-7 h-7 relative z-10 transition-transform group-hover:rotate-12" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="col-span-1 md:col-span-1 border-l border-white/5 pl-8 hidden md:block">
-            <h4 className="text-white text-[10px] font-black uppercase tracking-[0.3em] mb-10 text-blue-brand">Ecosystem</h4>
-            <ul className="space-y-6 text-neutral-500 font-bold text-sm">
-              <li><Link to="/" className="hover:text-blue-brand transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-blue-brand transition-colors" />
-                Digital Assets
-              </Link></li>
-              <li><Link to="/" className="hover:text-blue-brand transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-blue-brand transition-colors" />
-                AI Models
-              </Link></li>
-              <li><Link to="/" className="hover:text-blue-brand transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-blue-brand transition-colors" />
-                Creator Tools
-              </Link></li>
-              <li><Link to="/" className="hover:text-blue-brand transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-blue-brand transition-colors" />
-                Virtual Labs
-              </Link></li>
+          <div className="lg:col-span-3 space-y-10">
+            <h4 className="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.4em]">Protocol Node</h4>
+            <ul className="space-y-6 font-heading text-xl uppercase tracking-tight">
+              <li><Link to="/" className="hover:text-banana-green transition-colors block">Inventory</Link></li>
+              <li><Link to="/" className="hover:text-banana-green transition-colors block">Laboratories</Link></li>
+              <li><Link to="/" className="hover:text-banana-green transition-colors block">Manifestos</Link></li>
+              <li><Link to="/" className="hover:text-banana-green transition-colors block">Handshakes</Link></li>
             </ul>
           </div>
 
-          <div className="col-span-1 md:col-span-1 border-l border-white/5 pl-8 hidden md:block">
-            <h4 className="text-white text-[10px] font-black uppercase tracking-[0.3em] mb-10 text-banana-green">Resources</h4>
-            <ul className="space-y-6 text-neutral-500 font-bold text-sm">
-              <li><Link to="/" className="hover:text-banana-green transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-banana-green transition-colors" />
-                Academy
-              </Link></li>
-              <li><Link to="/" className="hover:text-banana-green transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-banana-green transition-colors" />
-                Network
-              </Link></li>
-              <li><Link to="/" className="hover:text-banana-green transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-banana-green transition-colors" />
-                Protocol
-              </Link></li>
-              <li><Link to="/" className="hover:text-banana-green transition-colors flex items-center gap-2 group">
-                <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-banana-green transition-colors" />
-                Legal
-              </Link></li>
+          <div className="lg:col-span-3 space-y-10">
+            <h4 className="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.4em]">Registry</h4>
+            <ul className="space-y-6 font-heading text-xl uppercase tracking-tight">
+              <li><Link to="/" className="hover:text-blue-brand transition-colors block">Archives</Link></li>
+              <li><Link to="/" className="hover:text-blue-brand transition-colors block">Command</Link></li>
+              <li><Link to="/" className="hover:text-blue-brand transition-colors block">Encryption</Link></li>
+              <li><Link to="/" className="hover:text-blue-brand transition-colors block">Legal</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 mt-24 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col gap-2">
-            <p className="text-neutral-600 font-black text-[10px] uppercase tracking-widest leading-none">
-              © {currentYear} protocol_doorx. All units operational.
+        <div className="border-t border-white/5 mt-32 pt-16 flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col gap-3">
+            <p className="text-white/10 font-mono text-[9px] uppercase tracking-[0.5em] leading-none">
+              © {currentYear} protocol_doorx. all systems operational.
             </p>
-            <p className="text-[10px] text-neutral-800 font-bold uppercase tracking-tighter">Secure Decentralized Creative Network_</p>
-          </div>
-          <div className="flex items-center gap-10">
             <div className="flex items-center gap-3">
-              <div className="flex gap-1">
+               <div className="w-1.5 h-1.5 rounded-full bg-banana-green animate-ping" />
+               <span className="text-[9px] font-mono font-bold text-white/40 uppercase tracking-widest italic">Encrypted Connection Established</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-12">
+            <div className="flex items-center gap-4">
+              <div className="flex gap-1.5">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="w-3 h-1 bg-banana-green animate-pulse" />
+                  <div key={i} className="w-4 h-1 bg-white/20 group-hover:bg-banana-green transition-colors" />
                 ))}
               </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-neutral-400 italic">Core Systems Stable</span>
+              <span className="text-[10px] font-mono font-black uppercase tracking-[0.2em] text-white/60">Edge Node: 12.0.4</span>
             </div>
-            <div className="text-[9px] font-black text-neutral-600 uppercase tracking-widest border border-white/5 px-4 py-2 rounded-full">
-              Region: Global_Edge
+            <div className="font-mono text-[10px] text-white/20 uppercase tracking-widest border border-white/5 px-6 py-3 rounded-2xl bg-white/5 backdrop-blur-md">
+              Secure-Layer: ACTIVE
             </div>
           </div>
         </div>
